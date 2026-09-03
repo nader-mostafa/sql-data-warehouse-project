@@ -48,7 +48,6 @@ The Data Warehouse supports analysis of:
 - SQL Server Management Studio (SSMS)
 - Visual Studio Code
 - Draw.io
-- Git & GitHub
 - CSV
 
 ## 📂 Repository Structure
