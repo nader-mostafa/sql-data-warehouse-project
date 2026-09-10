@@ -28,39 +28,8 @@ The main objective is to build a reliable foundation where raw data can be conve
 
 The warehouse is organized using a **Medallion Architecture**:
 
-```text
-                    ┌─────────────────────┐
-                    │     Source Data     │
-                    │    ERP + CRM CSV    │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │   🥉 BRONZE LAYER   │
-                    │     Raw Data        │
-                    └──────────┬──────────┘
-                               │
-                         ETL / Cleaning
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │   🥈 SILVER LAYER   │
-                    │ Clean & Standardized│
-                    └──────────┬──────────┘
-                               │
-                         Data Modeling
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │    🥇 GOLD LAYER    │
-                    │ Business-Ready Data │
-                    └──────────┬──────────┘
-                               │
-                               ▼
-                    ┌─────────────────────┐
-                    │ Analytics & Reports │
-                    └─────────────────────┘
-```
+<img width="2479" height="1516" alt="Data Architecture" src="https://github.com/user-attachments/assets/7a279026-ebf6-4740-830e-d336ff25b256" />
+
 
 ### Bronze Layer — Raw
 
@@ -164,21 +133,8 @@ The objective is to ensure that the Gold layer provides **consistent and reliabl
 
 The analytical layer follows a **dimensional modeling approach** based on a **Star Schema**.
 
-```text
-                         ┌─────────────────┐
-                         │  Dim Customers  │
-                         └────────┬────────┘
-                                  │
-                                  │
-┌─────────────────┐       ┌───────▼────────┐       ┌─────────────────┐
-│  Dim Products   │──────►│   Fact Sales   │◄──────│    Dim Date     │
-└─────────────────┘       └───────┬────────┘       └─────────────────┘
-                                  │
-                                  │
-                         ┌────────▼────────┐
-                         │ Business Metrics│
-                         └─────────────────┘
-```
+<img width="2402" height="1316" alt="data_model" src="https://github.com/user-attachments/assets/fe368962-315d-49dc-b985-91b23f4c9f44" />
+
 
 ### Fact Tables
 
@@ -222,45 +178,6 @@ These analytical areas are aligned with the project's stated reporting objective
 | **Visual Studio Code** | Development Environment      |
 | **Draw.io**            | Architecture & Data Modeling |
 | **Git / GitHub**       | Version Control              |
-
----
-
-## 📂 Repository Structure
-
-```text
-sql-data-warehouse-project/
-│
-├── datasets/
-│   └── Source CSV files
-│
-├── docs/
-│   ├── data_architecture.drawio
-│   ├── data_flow.drawio
-│   ├── data_models.drawio
-│   ├── etl.drawio
-│   ├── data_catalog.md
-│   └── naming-conventions.md
-│
-├── scripts/
-│   ├── bronze/
-│   │   └── Raw data ingestion
-│   │
-│   ├── silver/
-│   │   └── Data cleaning & transformation
-│   │
-│   └── gold/
-│       └── Analytical data models
-│
-├── tests/
-│   └── Data quality checks
-│
-├── README.md
-├── LICENSE
-├── .gitignore
-└── requirements.txt
-```
-
-The repository organization separates datasets, documentation, ETL scripts, analytical models, and testing components, following the structure of the project itself.
 
 ---
 
