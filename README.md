@@ -1,62 +1,237 @@
-# Data Warehouse and Analytics Project
+# 📊 SQL Data Warehouse & Analytics
 
-A modern Data Warehouse and Analytics project built with SQL Server, focusing on ETL, data transformation, data modeling, data quality, and analytics.
+<p align="center">
+  <strong>A Practical End-to-End Data Engineering & Analytics Project</strong>
+</p>
 
-## 🏗️ Architecture
+<p align="center">
+  <img src="https://img.shields.io/badge/SQL-Server-red?style=for-the-badge&logo=microsoftsqlserver&logoColor=white"/>
+  <img src="https://img.shields.io/badge/T--SQL-Advanced-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Data%20Engineering-ETL-orange?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Data%20Modeling-Star%20Schema-purple?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Git-GitHub-black?style=for-the-badge&logo=github"/>
+</p>
 
-The project follows the Medallion Architecture:
+---
 
-ERP / CRM
-   ↓
-Bronze
-   ↓
-Silver
-   ↓
-Gold
-   ↓
-Analytics
+## 📌 Overview
 
-- Bronze: Raw data ingested from ERP and CRM sources.
-- Silver: Cleaned, standardized, and transformed data.
-- Gold: Business-ready data modeled using a Star Schema.
+This project presents the development of a **modern SQL-based data warehouse** designed to transform raw operational data into a structured and analysis-ready environment.
 
-## 🔄 ETL Process
+The solution follows an **end-to-end data engineering workflow**, covering data ingestion, transformation, quality handling, dimensional modeling, and analytical querying.
 
-Extract → Transform → Load
+The main objective is to build a reliable foundation where raw data can be converted into **clean, integrated, and business-ready information** for analytical use.
 
-The project includes:
+---
 
-- ERP and CRM data integration
-- Data cleansing and standardization
-- Data quality checks
-- Dimensional modeling
-- Fact and Dimension tables
-- Star Schema
+## 🏗️ Solution Architecture
 
-## 📊 Analytics
+The warehouse is organized using a **Medallion Architecture**:
 
-The Data Warehouse supports analysis of:
+```text
+                    ┌─────────────────────┐
+                    │     Source Data     │
+                    │    ERP + CRM CSV    │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   🥉 BRONZE LAYER   │
+                    │     Raw Data        │
+                    └──────────┬──────────┘
+                               │
+                         ETL / Cleaning
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   🥈 SILVER LAYER   │
+                    │ Clean & Standardized│
+                    └──────────┬──────────┘
+                               │
+                         Data Modeling
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │    🥇 GOLD LAYER    │
+                    │ Business-Ready Data │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │ Analytics & Reports │
+                    └─────────────────────┘
+```
 
-- Customer Behavior
-- Product Performance
-- Sales Trends
+### Bronze Layer — Raw
 
-## 🛠️ Technologies & Tools
+The Bronze layer preserves the source data in its original form.
 
-- SQL Server 2025
-- T-SQL
-- SQL Server Management Studio (SSMS)
-- Visual Studio Code
-- Draw.io
-- CSV
+**Purpose:**
+
+* Load raw CSV files
+* Preserve source information
+* Provide a reliable landing layer
+* Separate ingestion from transformation
+
+### Silver Layer — Refined
+
+The Silver layer prepares the data for analytical modeling.
+
+**Main activities:**
+
+* Data cleansing
+* Standardization
+* Transformation
+* Data quality handling
+* Integration of source systems
+
+### Gold Layer — Analytical
+
+The Gold layer contains the final business-ready structures used for analysis.
+
+**Focus:**
+
+* Fact tables
+* Dimension tables
+* Analytical relationships
+* Reporting-ready data
+
+---
+
+## 🔄 Data Engineering Pipeline
+
+The complete workflow can be summarized as:
+
+```text
+Extract
+  ↓
+Load Raw Data
+  ↓
+Validate & Clean
+  ↓
+Transform & Standardize
+  ↓
+Integrate Sources
+  ↓
+Model Data
+  ↓
+Create Analytical Layer
+  ↓
+Generate Insights
+```
+
+This separation provides a clear distinction between **raw ingestion, data preparation, and analytical consumption**.
+
+---
+
+## 🎯 Project Objectives
+
+The project was designed to demonstrate the practical implementation of:
+
+* Modern data warehouse architecture
+* ETL development using SQL
+* Data quality and transformation
+* Integration of multiple data sources
+* Dimensional data modeling
+* Fact and dimension design
+* Analytical SQL development
+* Business-oriented data analysis
+
+The warehouse integrates data originating from **ERP and CRM CSV sources** into a unified analytical environment.
+
+---
+
+## 🧹 Data Quality & Transformation
+
+Before analytical use, the source data goes through a transformation process intended to improve its quality and consistency.
+
+Key areas include:
+
+| Area            | Purpose                                     |
+| --------------- | ------------------------------------------- |
+| Data Cleaning   | Resolve data quality issues                 |
+| Standardization | Maintain consistent formats and values      |
+| Validation      | Ensure data reliability                     |
+| Integration     | Combine multiple source systems             |
+| Transformation  | Convert raw data into analytical structures |
+| Data Types      | Apply appropriate types for analysis        |
+
+The objective is to ensure that the Gold layer provides **consistent and reliable data for downstream analytics**.
+
+---
+
+## ⭐ Data Modeling
+
+The analytical layer follows a **dimensional modeling approach** based on a **Star Schema**.
+
+```text
+                         ┌─────────────────┐
+                         │  Dim Customers  │
+                         └────────┬────────┘
+                                  │
+                                  │
+┌─────────────────┐       ┌───────▼────────┐       ┌─────────────────┐
+│  Dim Products   │──────►│   Fact Sales   │◄──────│    Dim Date     │
+└─────────────────┘       └───────┬────────┘       └─────────────────┘
+                                  │
+                                  │
+                         ┌────────▼────────┐
+                         │ Business Metrics│
+                         └─────────────────┘
+```
+
+### Fact Tables
+
+Fact tables contain measurable business events used for analytical calculations.
+
+### Dimension Tables
+
+Dimension tables provide descriptive context around those business events.
+
+This structure allows analytical queries to efficiently explore sales across different business dimensions.
+
+---
+
+## 📈 Analytics & Business Questions
+
+The final analytical layer supports analysis across three primary areas:
+
+### 👥 Customer Behavior
+
+Analyze how customers interact with the business and contribute to overall sales performance.
+
+### 📦 Product Performance
+
+Evaluate products and identify differences in their sales performance.
+
+### 📊 Sales Trends
+
+Explore sales activity and identify meaningful trends within the available data.
+
+These analytical areas are aligned with the project's stated reporting objectives.
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology             | Role                         |
+| ---------------------- | ---------------------------- |
+| **SQL Server**         | Database & Data Warehouse    |
+| **T-SQL**              | ETL & Analytics              |
+| **Docker**             | Database Environment         |
+| **Visual Studio Code** | Development Environment      |
+| **Draw.io**            | Architecture & Data Modeling |
+| **Git / GitHub**       | Version Control              |
+
+---
 
 ## 📂 Repository Structure
 
-data-warehouse-project/
+```text
+sql-data-warehouse-project/
 │
 ├── datasets/
-│   ├── source_crm/
-│   └── source_erp/
+│   └── Source CSV files
 │
 ├── docs/
 │   ├── data_architecture.drawio
@@ -68,27 +243,113 @@ data-warehouse-project/
 │
 ├── scripts/
 │   ├── bronze/
+│   │   └── Raw data ingestion
+│   │
 │   ├── silver/
+│   │   └── Data cleaning & transformation
+│   │
 │   └── gold/
+│       └── Analytical data models
 │
 ├── tests/
+│   └── Data quality checks
 │
 ├── README.md
-└── LICENSE
+├── LICENSE
+├── .gitignore
+└── requirements.txt
+```
 
-## 🎯 Key Objectives
+The repository organization separates datasets, documentation, ETL scripts, analytical models, and testing components, following the structure of the project itself.
 
-- Build a modern Data Warehouse using SQL Server
-- Integrate ERP and CRM data
-- Implement ETL processes
-- Ensure data quality
-- Design a Star Schema
-- Deliver analytics-ready data
+---
 
-## 👨‍💻 Author
+## 🚀 Key Skills Demonstrated
 
-Nader Mostafa
+Through this project, I practiced and demonstrated:
 
-Computer Science Student | Aspiring Data Engineer
+**SQL Development**
 
-SQL | SQL Server | Data Warehousing | ETL | Data Modeling | Data Engineering
+* Complex SQL queries
+* Data transformation
+* Analytical functions
+* Data validation
+
+**Data Engineering**
+
+* ETL workflows
+* Layered warehouse architecture
+* Source integration
+* Data quality handling
+
+**Data Modeling**
+
+* Dimensional modeling
+* Fact tables
+* Dimension tables
+* Star schema design
+
+**Analytics**
+
+* Customer analysis
+* Product analysis
+* Sales analysis
+* Business-oriented reporting
+
+---
+
+## 📚 Project Learning Outcomes
+
+This project provided practical experience with the full lifecycle of a data warehouse:
+
+```text
+Raw Data
+   ↓
+Data Ingestion
+   ↓
+Data Cleaning
+   ↓
+Transformation
+   ↓
+Data Integration
+   ↓
+Data Modeling
+   ↓
+Analytical Queries
+   ↓
+Business Insights
+```
+
+Rather than working with isolated SQL queries, the project focuses on understanding how the individual components of a data platform work together as a complete pipeline.
+
+---
+
+## 👨‍💻 About Me
+
+### Nader Mostafa
+
+**Student | Data Engineering & Data Analytics**
+
+I'm a student building practical projects to strengthen my skills in **SQL, Data Engineering, Data Analytics, and Data Modeling**.
+
+This project represents hands-on practice in designing and implementing a complete data warehouse workflow — from raw source data to an analytical layer.
+
+### Connect With Me
+
+<p>
+  <a href="http://www.linkedin.com/in/nader-mostafa-eg">
+    <img src="https://img.shields.io/badge/LinkedIn-Nader%20Mostafa-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+</p>
+
+---
+
+## ⭐ Project Focus
+
+> **Turning raw data into structured, reliable, and analysis-ready information through SQL-based data engineering.**
+
+---
+
+<p align="center">
+  <strong>Built with SQL • Designed for Analytics • Developed by Nader Mostafa</strong>
+</p>
